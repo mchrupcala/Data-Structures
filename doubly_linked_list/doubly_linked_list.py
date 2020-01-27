@@ -11,8 +11,11 @@ class ListNode:
     def insert_after(self, value):
         current_next = self.next
         self.next = ListNode(value, self, current_next)
+
+       #I don't understand what's happening on lines 16-17 
         if current_next:
             current_next.prev = self.next
+
     """Wrap the given value in a ListNode and insert it
     before this node. Note that this node could already
     have a previous node it is point to."""
@@ -25,9 +28,13 @@ class ListNode:
     accordingly, effectively deleting this ListNode."""
     def delete(self):
         if self.prev:
+            # how are we able to say self.prev.next? That's not an identity assigned in this node...so does that mean a node can access another node's "prev"?
             self.prev.next = self.next
         if self.next:
             self.next.prev = self.prev
+
+
+            
 """Our doubly-linked list class. It holds references to
 the list's head and tail nodes."""
 class DoublyLinkedList:
