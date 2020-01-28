@@ -34,7 +34,7 @@ class ListNode:
             self.next.prev = self.prev
 
 
-            
+
 """Our doubly-linked list class. It holds references to
 the list's head and tail nodes."""
 class DoublyLinkedList:
@@ -57,13 +57,19 @@ class DoublyLinkedList:
             new_node.next = self.head
             self.head.prev = new_node
             self.head = new_node
+
     """Removes the List's current head node, making the
     current head's next node the new head of the List.
     Returns the value of the removed Node."""
     def remove_from_head(self):
+        #Manipulated the next 4 lines...is this correct?
         value = self.head.value
+        # print(value)
         self.delete(self.head)
+        # print("Value is: ",value)
         return value
+
+
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly."""
@@ -103,6 +109,7 @@ class DoublyLinkedList:
         # If LL is empty
         if not self.head and not self.tail:
             # TODO: Error handling
+            self.length = 0
             return
         # If head and tail
         if self.head == self.tail:
