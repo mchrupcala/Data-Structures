@@ -35,31 +35,31 @@ Answer the following questions for each of the data structures you implemented a
 ## Doubly Linked List
 
 1. What is the runtime complexity of `ListNode.insert_after`?
-    O(n) - we have to assume the node being added is one of the last entries in the list.
+    O(1) - we're just revising the node's pointer which I already have access to.
 
 2. What is the runtime complexity of `ListNode.insert_before`?
-    O(n) - we have to assume the node being added is one of the middle/last entries in the list.
+    O(1) - we're just revising the node's pointer which I already have access to.
 
 3. What is the runtime complexity of `ListNode.delete`?
     O(1)? Seems like this would be called with a direct reference to the node being deleted.
 
 4. What is the runtime complexity of `DoublyLinkedList.add_to_head`?
-    O(n) - we can directly access a Linked list's head.
+    O(1) - we can directly access a Linked list's head.
 
 5. What is the runtime complexity of `DoublyLinkedList.remove_from_head`?
-    O(n) - we can directly access a Linked list's head.
+    O(1) - we can directly access a Linked list's head.
 
 6. What is the runtime complexity of `DoublyLinkedList.add_to_tail`?
-    O(n) - we can directly access a Linked list's tail.
+    O(1) - we can directly access a Linked list's tail.
 
 7. What is the runtime complexity of `DoublyLinkedList.remove_from_tail`?
-    O(n) - we can directly access a Linked list's tail.
+    O(1) - we can directly access a Linked list's tail.
 
 8. What is the runtime complexity of `DoublyLinkedList.move_to_front`?
-    O(n) assuming that we're traversing the majority of the list.
+    O(1) we're not full traversing because we're accessing the first entry.
 
 9. What is the runtime complexity of `DoublyLinkedList.move_to_end`?
-    O(n) assuming that we're traversing the majority of the list.
+    O(1) we're not full traversing because we're accessing the last entry.
 
 10. What is the runtime complexity of `DoublyLinkedList.delete`?
     O(1) - even though there's a few conditionals, we ignore coefficients and heads/tails can be accessed directly.
