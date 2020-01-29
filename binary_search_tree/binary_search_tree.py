@@ -28,17 +28,35 @@ class BinarySearchTree:
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        
-        pass
+        if self.right is not None and self.right.value == target:
+            return True
+        elif self.left is not None and self.left.value == target:
+            return True
+        elif target > self.value and self.right is not None:
+            self.right.contains(target)
+        elif target < self.value and self.left is not None:
+            self.left.contains(target)
+        else:
+            return False
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        print(self.value, self.right)
+        if self.right is not None:
+            return self.right.get_max()
+        elif self.right is None:
+            print("Value is: ", self.value)
+            return self.value
+        ##I don't understand why this test is failing...I'mn printing the correct return value...twice...ummm what now
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+        if self.right is not None:
+            self.right.for_each(cb)
+        if self.left is not None:
+            self.left.for_each(cb)
 
 
 
