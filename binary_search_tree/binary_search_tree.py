@@ -41,11 +41,9 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        print(self.value, self.right)
         if self.right is not None:
             return self.right.get_max()
         elif self.right is None:
-            print("Value is: ", self.value)
             return self.value
         ##I don't understand why this test is failing...I'mn printing the correct return value...twice...ummm what now
 
@@ -67,7 +65,14 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if self.left is not None:
+            self.left.in_order_print(self.left)
+        print(self.value)
+        if self.right is not None:
+            self.right.in_order_print(self.right)
+
+
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -77,7 +82,13 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        while self.left is not None and self.right is not None:
+            node = self.left
+        print(self.value)
+        while self.right is not None:
+            node = self.right
+        print(self.value)
+
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
