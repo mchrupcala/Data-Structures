@@ -12,28 +12,67 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        if value >= self.value and self.right is None:
+            self.right = BinarySearchTree(value)
+        elif value < self.value and self.left is None:
+            self.left = BinarySearchTree(value)
+        elif value >= self.value and self.right is not None:
+            current_right = self.right
+            current_right.insert(value)
+        elif value < self.value and self.left is not None:
+            current_left = self.left
+            current_left.insert(value)
+
+
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.right is not None and self.right.value == target:
+            return True
+        elif self.left is not None and self.left.value == target:
+            return True
+        elif target > self.value and self.right is not None:
+            self.right.contains(target)
+        elif target < self.value and self.left is not None:
+            self.left.contains(target)
+        else:
+            return False
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if self.right is not None:
+            return self.right.get_max()
+        elif self.right is None:
+            return self.value
+        ##I don't understand why this test is failing...I'mn printing the correct return value...twice...ummm what now
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+        if self.right is not None:
+            self.right.for_each(cb)
+        if self.left is not None:
+            self.left.for_each(cb)
+
+
+
+
 
     # DAY 2 Project -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if self.left is not None:
+            self.left.in_order_print(self.left)
+        print(self.value)
+        if self.right is not None:
+            self.right.in_order_print(self.right)
+
+
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -43,7 +82,13 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        while self.left is not None and self.right is not None:
+            node = self.left
+        print(self.value)
+        while self.right is not None:
+            node = self.right
+        print(self.value)
+
 
     # STRETCH Goals -------------------------
     # Note: Research may be required

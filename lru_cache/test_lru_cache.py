@@ -15,6 +15,7 @@ class CacheTests(unittest.TestCase):
 
         self.assertEqual(self.cache.get('item1'), 'a')
         self.assertEqual(self.cache.get('item2'), 'z')
+        print(self.cache.cache_in_order)
 
     def test_cache_insertion_and_retrieval(self):
         self.cache.set('item1', 'a')
@@ -28,6 +29,7 @@ class CacheTests(unittest.TestCase):
         self.assertEqual(self.cache.get('item3'), 'c')
         self.assertEqual(self.cache.get('item4'), 'd')
         self.assertIsNone(self.cache.get('item2'))
+        print(self.cache.cache_in_order)
 
     def test_cache_nonexistent_retrieval(self):
         self.assertIsNone(self.cache.get('nonexistent'))

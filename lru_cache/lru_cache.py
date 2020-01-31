@@ -2,6 +2,12 @@ import sys
 sys.path.append('../doubly_linked_list')
 from doubly_linked_list import DoublyLinkedList
 
+'''
+Some questions;
+    SO I didn't create a stack class...but since I'm adding/removing from the DLL tail, does that mean I still made a stack data structure anyway? Or is there something I'm missing?
+'''
+
+
 class LRUCache:
     """
     Our LRUCache class keeps track of 
@@ -16,8 +22,9 @@ class LRUCache:
     def __init__(self, limit=10):
         self.limit = limit
         self.current_nodes = 0
-        self.cache_in_order = DoublyLinkedList()
+        self.cache_in_order = {}
         self.cache = DoublyLinkedList()
+        #Honestly these variable names should be switched...the DLL is ordered, the dictionary is not.
 
     """
     1) Retrieves the value associated with the given key. 
@@ -30,11 +37,14 @@ class LRUCache:
         temp = self.cache.tail
         if temp is None:
             return None
-
         while temp is not None:
-            if str(key) == temp.value[0]:
-                self.set(key, temp.value[1])
-                return temp.value[1]
+            if temp == self.cache_in_order[temp]:
+                self.set(key, self.cache_in_order[temp])
+                return self.cache_in_order[temp]
+            print(self.cache_in_order)
+            # if str(key) == temp.value[0]:
+            #     self.set(key, temp.value[1])
+            #     return temp.value[1]
             temp = temp.prev
         return 
 
@@ -51,21 +61,31 @@ class LRUCache:
     def set(self, key, value):
         overwrite = 0
         temp = self.cache.tail
+
         if temp is None:
+            self.cache_in_order[temp] = value
+            # self.cache_in_order[key] = value
+            #^how do I deal with the case where a pointer's key is None?
             return self.cache.add_to_tail((key, value))
         elif temp:
             while temp.prev is not None:
                 if str(key) == temp.value[0]:
                     temp.delete()
                     overwrite = 1
+                    self.cache_in_order[temp] = value
+                    # self.cache_in_order[key] = value
                     return self.cache.add_to_tail((key, value))
                 temp = temp.prev
 
         # #If limit will be exceeded and this is not an overwrite, delete oldest entry and add newest.
         if self.cache.length == self.limit and overwrite == 0:
             self.cache.delete(self.cache.head)
+            self.cache_in_order[temp] = value
+            # self.cache_in_order[key] = value
             return self.cache.add_to_tail((key, value))
         else:
+            self.cache_in_order[temp] = value
+            # self.cache_in_order[key] = value
             return self.cache.add_to_tail((key, value))
 
         if self.current_nodes != self.limit and overwrite == 0:
